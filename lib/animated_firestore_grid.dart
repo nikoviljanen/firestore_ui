@@ -276,6 +276,7 @@ class FirestoreAnimatedGridState extends State<FirestoreAnimatedGrid> {
         _loaded = true;
       });
     }
+    print("_onLoaded: " + querySnapshot.toString());
     if (querySnapshot != null) widget.onLoaded?.call(querySnapshot);
   }
 
