@@ -276,7 +276,6 @@ class FirestoreAnimatedGridState extends State<FirestoreAnimatedGrid> {
         _loaded = true;
       });
     }
-    print("_onLoaded: " + querySnapshot.toString());
     if (querySnapshot != null) widget.onLoaded?.call(querySnapshot);
   }
 
@@ -291,6 +290,10 @@ class FirestoreAnimatedGridState extends State<FirestoreAnimatedGrid> {
 
   @override
   Widget build(BuildContext context) {
+    if (!_loaded) {
+      return widget.defaultChild ?? Center(child: CircularProgressIndicator());
+    }
+
     if (_loaded && _model.isEmpty) {
       return widget.emptyChild ?? Container();
     }
